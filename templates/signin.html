@@ -29,6 +29,13 @@
 									</div>
 									<p>or use your email account:</p>
 									<form>
+										{% if messages %}
+										<ul class="messages">
+											{% for message in messages %}
+											<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+											{% endfor %}
+										</ul>
+								{% endif %}
 										<div class="form-group">
 											<input type="email" id="inputEmail" class="form-control" placeholder="Email Address" required>
 											<button class="btn icon"><i class="material-icons">mail_outline</i></button>
