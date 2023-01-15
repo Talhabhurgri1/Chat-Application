@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+		<meta charset="utf-8">
+		<title>Sign In – Swipe</title>
+		<meta name="description" content="#">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		{% comment %} <link href = "{% static 'chat/dist/css/custom_css/custom_style.css' %}" type="text/css" rel="stylesheet"> {% endcomment %}
+		<!-- Bootstrap core CSS -->
+		<link href="{% static 'chat/dist/css/lib/bootstrap.min.css' %}" type="text/css" rel="stylesheet">
+		<!-- Swipe core CSS -->
+		<link href="{% static 'chat/dist/css/swipe.min.css'%}" type="text/css" rel="stylesheet">
+		<!-- Favicon -->
+		<link href="{% static 'chat/dist/img/favicon.png' %}" type="image/png" rel="icon">
+		
+	{%block head%} {% endblock %}
+    </head>
+<body>
+
+    {%block body%} {% endblock %}
+    		<!-- Bootstrap/Swipe core JavaScript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+			<!-- Placed at the end of the document so the pages load faster -->
+         {%block script%}{%endblock%}
+            <script src="{% static 'chat/dist/js/jquery-3.3.1.slim.min.js' %}" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+			<script>window.jQuery || document.write(`<script src="{%static 'chat/dist/js/vendor/jquery-slim.min.js' "><\/script>`)</script>
+            <script src="{% static 'chat/dist/js/vendor/popper.min.js' %}"></script>
+            <script src="{% static 'chat/dist/js/bootstrap.min.js' %}"></script>
+			<script src = "{% static 'chat/dist/js/global.js' %}"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"> </script>
+			
+		{% comment %} <script>
+			function scrollToBottom(el) { el.scrollTop = el.scrollHeight; }
+			scrollToBottom(document.getElementById('content'));
+		</script> {% endcomment %}
+
+</body>
+</html>
