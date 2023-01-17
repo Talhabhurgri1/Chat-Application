@@ -44,22 +44,7 @@ validator = form.validate({
     
 });
 
-function error_msg(msg, alert_type){
-    var timer = 0 
-    var form = $("#msg")
-    var alert_msg  = `<div class="alert alert-${alert_type}" role="alert">
-    ${msg}
-  </div>
-  `
-  $("#signup").prop('disabled', true)
-  form.html(alert_msg)
-  setTimeout(function() { 
-    $(".alert").hide();
-    $("#signup").prop('disabled', false)
 
-}, 5000);
-    
-}
 $("#signup").on('click',function(){
 
     form.submit(function(e){
@@ -87,7 +72,8 @@ $("#signup").on('click',function(){
                               error_msg("User already exists","danger")
                             }
                             else if (returned.status == 200){ 
-                                location.href = "/"
+                                console.log("here")
+                                location.href = "/login/"
                             }
 
                         },

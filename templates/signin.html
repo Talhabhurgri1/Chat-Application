@@ -44,7 +44,7 @@
 											<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
 											<button class="btn icon"><i class="material-icons">lock_outline</i></button>
 										</div>
-										<button type="button" class="btn button" formaction="index-2.html">Sign In</button>
+										<button type="submit" class="btn button" id="signin">Sign In</button>
 										<div class="callout">
 											<span>Don't have account? <a href="sign-up.html">Create Account</a></span>
 										</div>
@@ -77,5 +77,37 @@
          <script src="{%static 'chat/dist/js/vendor/popper.min.js' %}"></script>
          {%endblock%}
 	</body>
+<script>
+	$("#signin").on('click', function(e){
+		e.preventDefault()
+		var btn = $(this)
+		
+		var email = $("#inputEmail").val() 
+		var password = $("#inputPassword").val()
+		var mydata = {"email":email, "password":password}
+		console.log(email,password)
+		$.ajax(
+                    {
+                        method : "POST",
+                        url : "/login/",
+                        headers: { "X-CSRFToken": getCookie("csrftoken") },
+                        data : {
+                            "data": mydata,
+                            "csrfmiddlewaretoken": token,
+                        },
+                        success : function(returned, status, xhr){
+                            
+                            if (returned.status == 400){
+                              error_msg("Email or Password is incorrect","danger")
+                            }
+                            else if (returned.status == 200){ 
+                            location.href = "/chat/"
+							}
 
+                        },
+                     
+                    }
+                )
+	})
+</script>
 {% endblock %}

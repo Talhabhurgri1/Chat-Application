@@ -11,3 +11,20 @@ function getCookie(c_name) {
     }
     return "";
 }
+
+//  Alert message function 
+function error_msg(msg, alert_type){
+    var timer = 0 
+    var form = $("#msg")
+    var alert_msg  = `<div class="alert alert-${alert_type}" role="alert">
+    ${msg}
+  </div>
+  `
+  $("#signup").prop('disabled', true)
+  form.html(alert_msg)
+  setTimeout(function() { 
+    $(".alert").hide();
+    $("#signup").prop('disabled', false)
+
+}, 5000);
+}
