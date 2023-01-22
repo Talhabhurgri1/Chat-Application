@@ -5,7 +5,6 @@ import json
 class ChatConsumer(AsyncConsumer):
 
     async def websocket_connect(self, event):
-        print("Connected", event)
         await self.send(
             {
                 'type': 'websocket.accept'
@@ -13,11 +12,11 @@ class ChatConsumer(AsyncConsumer):
         )
 
     async def websocket_receive(self, event):
-        print("Receive", event)
         received_data = json.loads(event['text'])
         msg = received_data.get('message')
-        if not msg: 
-            return False 
+        
+        if not msg:
+            return False
         response = {
             'message': msg
         }

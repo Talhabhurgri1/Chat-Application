@@ -9,5 +9,6 @@ class chatUser(models.Model):
         on_delete=models.CASCADE,
         primary_key=True,
     )
+    User._meta.get_field('email')._unique = True
     date_created = models.DateTimeField(default=datetime.datetime.now())
     phone_number = models.CharField(default=0, max_length=14)

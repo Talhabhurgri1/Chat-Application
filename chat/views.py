@@ -10,9 +10,14 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 @login_required(login_url="login")
-def chat(request):
+def chat(request):  # get all user except the one online
     return render(request, "index.html")
 
+def get_all_users(request):
+    context = {}
+    users = chatUser.objects.filter().exclude(user=request.user)
+    context['users'] = users
+    return JsonResponse(context, safe=False)
 
 def login_user(request):
 
@@ -34,25 +39,21 @@ def logout_user(request):
 
 
 def signup(request):
-    
     username = request.POST.get('data[username]')
     email = request.POST.get('data[email]')
     password1 = request.POST.get('data[password1]')
     try:
-        if request.method == 'POST':    
+        if request.method == 'POST':  
             user_check = chatUser.objects.filter(user__email=email)
             if user_check:
                 return JsonResponse({"status": 400})
-            else: 
-                print("here")      
-                new_user = User.objects.create_user(email=email, username=username, password=password1)  
+            else:
+                print("here")    
+                new_user = User.objects.create_user(email=email, username=username, password=password1) # noqa
                 new_user = chatUser.objects.create(user=new_user)
                 new_user.save()
-                messages.add_message(request, messages.SUCCESS, "User has been created")
+                messages.add_message(request, messages.SUCCESS, "User has been created") # noqa
                 return JsonResponse({"status": 200})
     except Exception:
         print("in exception")                 
     return render(request, "sign-up.html")
-
-
-    
